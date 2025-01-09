@@ -1,21 +1,21 @@
-cmake_minimum_required(VERSION 3.5) 
-project(open3d_conversions_examples) 
+cmake_minimum_required(VERSION 3.5)
+project(open3d_conversions_examples)
 set(CMAKE_CXX_STANDARD 14)
 
 #System Dependencies
-find_package(Eigen3 REQUIRED) 
-find_package(Open3D REQUIRED)
+find_package(Eigen3 REQUIRED)
+find_package(Open3D REQUIRED HINTS "$ENV{Open3D_ROOT}")
 
 find_package(
   catkin REQUIRED COMPONENTS
   roscpp
-  std_msgs 
-  sensor_msgs 
+  std_msgs
+  sensor_msgs
   roslib
   open3d_conversions
 )
 
-include_directories(${EIGEN3_INCLUDE_DIR}) 
+include_directories(${EIGEN3_INCLUDE_DIR})
 include_directories(${Open3D_LIBRARY_DIRS})
 include_directories(${catkin_INCLUDE_DIRS})
 
@@ -25,12 +25,12 @@ DEPENDS Open3D
 )
 
 #Examples
-add_executable(ex_conv_times src/ex_conv_times.cpp) 
-target_link_libraries(ex_conv_times ${catkin_LIBRARIES} ${Open3D_LIBRARIES}) 
+add_executable(ex_conv_times src/ex_conv_times.cpp)
+target_link_libraries(ex_conv_times ${catkin_LIBRARIES} ${Open3D_LIBRARIES})
 target_include_directories(ex_conv_times PUBLIC ${Open3D_INCLUDE_DIRS})
 
-add_executable(ex_sub src/ex_sub.cpp) 
-target_link_libraries(ex_sub ${catkin_LIBRARIES} ${Open3D_LIBRARIES}) 
+add_executable(ex_sub src/ex_sub.cpp)
+target_link_libraries(ex_sub ${catkin_LIBRARIES} ${Open3D_LIBRARIES})
 target_include_directories(ex_sub PUBLIC ${Open3D_INCLUDE_DIRS})
 
 add_executable(ex_pub src/ex_pub.cpp)
